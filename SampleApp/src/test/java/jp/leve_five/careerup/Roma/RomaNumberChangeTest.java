@@ -18,299 +18,299 @@ public class RomaNumberChangeTest {
 
 	@Test
 	public void testローマ数字Iを渡すと数字1が返ってくる() {
-		int result = romaNumberChange.arabic("I");
+		int result = romaNumberChange.convertRomanNumber("I");
 		assertEquals(1, result);
 	}
 
 	@Test
 	public void testローマ数字大文字Iを渡すと数字１が返る() {
-		int result = romaNumberChange.arabic("I");
+		int result = romaNumberChange.convertRomanNumber("I");
 		assertEquals(1, result);
 	}
 
 	@Test
 	public void testローマ数字小文字ｖを渡すと数字5が返ってくる() {
-		int result = romaNumberChange.arabic("v");
+		int result = romaNumberChange.convertRomanNumber("v");
 		assertEquals(5, result);
 	}
 
 	@Test
 	public void testローマ数字Xを渡すと数字10が返ってくる() {
-		int result = romaNumberChange.arabic("X");
+		int result = romaNumberChange.convertRomanNumber("X");
 		assertEquals(10, result);
 	}
 
 	@Test
 	public void testローマ数字xxxを渡すと数字の３０が返る() {
-		int result = romaNumberChange.arabic("xxx");
+		int result = romaNumberChange.convertRomanNumber("xxx");
 		assertEquals(30, result);
 	}
 
 	@Test
 	public void testローマ数字lを渡すと数字の50が返る() {
-		int result = romaNumberChange.arabic("l");
+		int result = romaNumberChange.convertRomanNumber("l");
 		assertEquals(50, result);
 	}
 
 	@Test
 	public void testローマ数字IVを渡すと数字の4が返る() {
-		int result = romaNumberChange.arabic("IV");
+		int result = romaNumberChange.convertRomanNumber("IV");
 		assertEquals(4, result);
 	}
 
 	@Test
 	public void testローマ数字IXを渡すと数字の9が返る() {
-		int result = romaNumberChange.arabic("IX");
+		int result = romaNumberChange.convertRomanNumber("IX");
 		assertEquals(9, result);
 	}
 
 	@Test
 	public void testローマ数字IIIを渡すと数字の３が返る() {
-		int result = romaNumberChange.arabic("iii");
+		int result = romaNumberChange.convertRomanNumber("iii");
 		assertEquals(3, result);
 	}
 
 	@Test
 	public void testローマ数字VIを渡すと6が返る() {
-		int result = romaNumberChange.arabic("VI");
+		int result = romaNumberChange.convertRomanNumber("VI");
 		assertEquals(6, result);
 	}
 
 	@Test
 	public void testローマ数字VIIを渡すと7が返る() {
-		int result = romaNumberChange.arabic("VII");
+		int result = romaNumberChange.convertRomanNumber("VII");
 		assertEquals(7, result);
 	}
 
 	@Test
 	public void testローマ数字XIを渡すと11が返る() {
-		int result = romaNumberChange.arabic("xi");
+		int result = romaNumberChange.convertRomanNumber("xi");
 		assertEquals(11, result);
 	}
 
 	@Test
 	public void testローマ数字XXIを渡すと21が返る() {
-		int result = romaNumberChange.arabic("xxi");
+		int result = romaNumberChange.convertRomanNumber("xxi");
 		assertEquals(21, result);
 	}
 
 	@Test
 	public void testローマ数字ciを渡すと101が返る() {
-		int result = romaNumberChange.arabic("ci");
+		int result = romaNumberChange.convertRomanNumber("ci");
 		assertEquals(101, result);
 	}
 
 	@Test
 	public void testローマ数字xxxiを渡すと31が返る() {
-		int result = romaNumberChange.arabic("xxxi");
+		int result = romaNumberChange.convertRomanNumber("xxxi");
 		assertEquals(31, result);
 	}
 
 	@Test
 	public void testローマ数字cmxcixを渡すと999が返る() {
-		int result = romaNumberChange.arabic("cmxcix");
+		int result = romaNumberChange.convertRomanNumber("cmxcix");
 		assertEquals(999, result);
 	}
 
 	@Test
 	public void testローマ数字xlを渡すと40が返る() {
-		int result = romaNumberChange.arabic("xl");
+		int result = romaNumberChange.convertRomanNumber("xl");
 		assertEquals(40, result);
 	}
 
 	@Test
 	public void testローマ数字xcを渡すと90が返る() {
-		int result = romaNumberChange.arabic("xc");
+		int result = romaNumberChange.convertRomanNumber("xc");
 		assertEquals(90, result);
 	}
 
 	@Test
 	public void testローマ数字cxiを渡すと111が返る() {
-		int result = romaNumberChange.arabic("cxi");
+		int result = romaNumberChange.convertRomanNumber("cxi");
 		assertEquals(111, result);
 	}
 
 	@Test
 	public void testローマ数字cccxlivを渡すと344が返る() {
-		int result = romaNumberChange.arabic("cccxliv");
+		int result = romaNumberChange.convertRomanNumber("cccxliv");
 		assertEquals(344, result);
 	}
 
 	@Test
 	public void testローマ数字miiiを渡すと1001が返る() {
-		int result = romaNumberChange.arabic("miii");
+		int result = romaNumberChange.convertRomanNumber("miii");
 		assertEquals(1003, result);
 	}
 
 	@Test
 	public void testローマ数字xxを渡すと数字の２０が返る() {
-		int result = romaNumberChange.arabic("xx");
+		int result = romaNumberChange.convertRomanNumber("xx");
 		assertEquals(20, result);
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字IIIIを渡すと例外が発生する() {
-		romaNumberChange.arabic("IIII");
+		romaNumberChange.convertRomanNumber("IIII");
 	}
 
 	@Test
 	public void testローマ数字xlを渡すと数字の40が返る() {
-		int result = romaNumberChange.arabic("xl");
+		int result = romaNumberChange.convertRomanNumber("xl");
 		assertEquals(40, result);
 	}
 
 	@Test
 	public void testローマ数字xcを渡すと数字の90が返る() {
-		int result = romaNumberChange.arabic("xc");
+		int result = romaNumberChange.convertRomanNumber("xc");
 		assertEquals(90, result);
 	}
 
 	@Test
 	public void testローマ数字xcixを渡すと数字の99が返る() {
-		int result = romaNumberChange.arabic("xcix");
+		int result = romaNumberChange.convertRomanNumber("xcix");
 		assertEquals(99, result);
 	}
 
 	@Test
 	public void testローマ数字cdを渡すと数字の400が返る() {
-		int result = romaNumberChange.arabic("cd");
+		int result = romaNumberChange.convertRomanNumber("cd");
 		assertEquals(400, result);
 	}
 
 	@Test
 	public void testローマ数字cmを渡すと数字の900が返る() {
-		int result = romaNumberChange.arabic("cm");
+		int result = romaNumberChange.convertRomanNumber("cm");
 		assertEquals(900, result);
 	}
 
 	@Test
 	public void testローマ数字cmを渡すと数字の104が返る() {
-		int result = romaNumberChange.arabic("civ");
+		int result = romaNumberChange.convertRomanNumber("civ");
 		assertEquals(104, result);
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字llを渡すと例外が発生する() {
-		romaNumberChange.arabic("ll");
+		romaNumberChange.convertRomanNumber("ll");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字IVVを渡すと例外が発生する() {
-		romaNumberChange.arabic("IVV");
+		romaNumberChange.convertRomanNumber("IVV");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字ggを渡すと例外が発生する() {
-		romaNumberChange.arabic("gg");
+		romaNumberChange.convertRomanNumber("gg");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字ilを渡すと例外が発生する() {
-		romaNumberChange.arabic("il");
+		romaNumberChange.convertRomanNumber("il");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字imを渡すと例外が発生する() {
-		romaNumberChange.arabic("im");
+		romaNumberChange.convertRomanNumber("im");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字icを渡すと例外が発生する() {
-		romaNumberChange.arabic("ic");
+		romaNumberChange.convertRomanNumber("ic");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字cmmを渡すと例外が発生する() {
-		romaNumberChange.arabic("cmm");
+		romaNumberChange.convertRomanNumber("cmm");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字iccを渡すと例外が発生する() {
-		romaNumberChange.arabic("icc");
+		romaNumberChange.convertRomanNumber("icc");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字icicを渡すと例外が発生する() {
-		romaNumberChange.arabic("icic");
+		romaNumberChange.convertRomanNumber("icic");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字ivivを渡すと例外が発生する() {
-		romaNumberChange.arabic("iviv");
+		romaNumberChange.convertRomanNumber("iviv");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字xcmを渡すと例外が発生する() {
-		romaNumberChange.arabic("xcm");
+		romaNumberChange.convertRomanNumber("xcm");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字MCMCMを渡すと例外が発生する() {
-		romaNumberChange.arabic("mcmcm");
+		romaNumberChange.convertRomanNumber("mcmcm");
 	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字iivを渡すと例外が発生する() {
-		romaNumberChange.arabic("iiv");
+		romaNumberChange.convertRomanNumber("iiv");
 	}
 
 	@Test
 	public void testローマ数字mmmdccclxxxviiiを渡すと3888が返る() {
-		int result = romaNumberChange.arabic("mmmdccclxxxviii");
+		int result = romaNumberChange.convertRomanNumber("mmmdccclxxxviii");
 		assertEquals(3888, result);
 	}
-	
+
 	@Test
 	public void testローマ数字xiを渡すと11が返る() {
-		int result = romaNumberChange.arabic("xi");
+		int result = romaNumberChange.convertRomanNumber("xi");
 		assertEquals(11, result);
 	}
 
 	@Test
 	public void test数字1を渡すとローマ数字IVが返る() {
-		String result = romaNumberChange.replaceArabicRoman(1);
+		String result = romaNumberChange.convertRomanNumber(1);
 		assertEquals("I", result);
 	}
 
 	@Test
 	public void test数字４を渡すとローマ数字IVが返る() {
-		String result = romaNumberChange.replaceArabicRoman(4);
+		String result = romaNumberChange.convertRomanNumber(4);
 		assertEquals("IV", result);
 	}
 
 	@Test
 	public void test数字99を渡すとローマ数字XCIXが返る() {
-		String result = romaNumberChange.replaceArabicRoman(99);
+		String result = romaNumberChange.convertRomanNumber(99);
 		assertEquals("XCIX", result);
 	}
 
 	@Test
 	public void test数字3を渡すとローマ数字IIIが返る() {
-		String result = romaNumberChange.replaceArabicRoman(3);
+		String result = romaNumberChange.convertRomanNumber(3);
 		assertEquals("III", result);
 	}
 
 	@Test
 	public void test数字3999を渡すとローマ数字MMMCMXCIXが返る() {
-		String result = romaNumberChange.replaceArabicRoman(3999);
+		String result = romaNumberChange.convertRomanNumber(3999);
 		assertEquals("MMMCMXCIX", result);
 	}
 
 	@Test
 	public void test数字3954を渡すとローマ数字MMMCMLIVが返る() {
-		String result = romaNumberChange.replaceArabicRoman(3954);
+		String result = romaNumberChange.convertRomanNumber(3954);
 		assertEquals("MMMCMLIV", result);
 	}
 
 	@Test
 	public void test数字3888を渡すとローマ数字が返る() {
-		String result = romaNumberChange.replaceArabicRoman(3888);
+		String result = romaNumberChange.convertRomanNumber(3888);
 		assertEquals("MMMDCCCLXXXVIII", result);
 	}
 
 	@Test
 	public void test数字99を渡すとローマ数字が返る() {
-		String result = romaNumberChange.replaceArabicRoman(99);
+		String result = romaNumberChange.convertRomanNumber(99);
 		assertEquals("XCIX", result);
 	}
 
