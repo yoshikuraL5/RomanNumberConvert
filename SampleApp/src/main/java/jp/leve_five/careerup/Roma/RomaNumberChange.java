@@ -21,16 +21,15 @@ public class RomaNumberChange {
 			// 当てはまるローマ数字があれば、値を入れる。
 			currentNumber = changeNumber(inputChar, i);
 			count++;
-			System.out.println(count);
 			if (i != inputChar.length - 1
 					&& minNumber > currentNumber
 					&& !(currentNumber == minNumber
 							|| currentNumber * 5 == minNumber || currentNumber * 10 == minNumber)
-					|| (minNumber > currentNumber && count >=  3)) {
-				throw new RuntimeException("ローマ字記法の文法ではありません。");
+					|| (minNumber > currentNumber && count >= 3)) {
+				throw new RuntimeException("ローマ字記法の文法ではありません。*1");
 			}
 			if (count > 4) {
-				throw new RuntimeException("ローマ字記法の文法ではありません。");
+				throw new RuntimeException("ローマ字記法の文法ではありません。*2");
 			}
 			isEquivalentNumber(inputChar, currentNumber, i);
 			// ローマ数字の一文字として判定されればtrueし、resultに加算する
@@ -44,8 +43,9 @@ public class RomaNumberChange {
 				romaTrue = true;
 				trueAdd += currentNumber * -1;
 				if (i > 0) {
-					if (currentNumber > changeNumber(inputChar, i - 1)) {
-						throw new RuntimeException("誤ったローマ字記法です。");
+					if (currentNumber > changeNumber(inputChar, i - 1)
+							|| minNumber >= changeNumber(inputChar, i - 1)) {
+						throw new RuntimeException("ローマ字記法の文法ではありません。*3");
 					}
 				}
 			} else if (count == 3) {
