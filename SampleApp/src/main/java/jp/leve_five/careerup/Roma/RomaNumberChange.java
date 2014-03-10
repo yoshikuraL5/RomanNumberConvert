@@ -30,9 +30,6 @@ public class RomaNumberChange {
 			}
 			isEquivalentNumber(inputChar, currentNumber, i);
 			// ローマ数字の一文字として判定されればtrueし、resultに加算する
-			if (inputChar.length == 1) {
-				romaTrue = true;
-			}
 
 			if (minNumber == 5 && currentNumber == 1 || minNumber == 10
 					&& currentNumber == 1 || minNumber == 50
@@ -48,14 +45,15 @@ public class RomaNumberChange {
 				trueAdd += currentNumber;
 				// 次の要素が同じであれば、例外発生させる。
 				try {
-					if (currentNumber == changeNumber(inputChar, i + 1)) {
-						throw new RuntimeException("同じ文字を４つ以上使ってはいけません。");
+					if (i > 0 & currentNumber == changeNumber(inputChar, i - 1)) {
+
 					}
 				} catch (RuntimeException e) {
 					throw new RuntimeException("同じ文字を４つ以上使ってはいけません。");
 				}
+
 			} else if ((minNumber * 5 != currentNumber || minNumber * 10 != currentNumber)
-					&& currentNumber > minNumber) {
+					&& currentNumber > minNumber && i != inputChar.length - 1) {
 				romaTrue = true;
 				trueAdd += currentNumber;
 			} else {
