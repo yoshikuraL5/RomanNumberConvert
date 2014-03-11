@@ -3,8 +3,8 @@ package jp.leve_five.careerup.Roma;
 public class ReplaceRomanToArabic {
 	private boolean romaTrue = false;
 	private int resultAdd = 0;
-	public int convertRomanToNumber(String romaString) {
-		char[] inputChar = romaString.toLowerCase().toCharArray();
+	public int convertRomanToNumber(String inputRoman) {
+		char[] inputChar = inputRoman.toLowerCase().toCharArray();
 		int previousNumber = 0;
 		int currentNumber = 0;
 		int result = 0;		

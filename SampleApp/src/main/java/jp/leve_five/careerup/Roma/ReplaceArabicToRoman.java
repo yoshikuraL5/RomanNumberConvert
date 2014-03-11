@@ -2,11 +2,11 @@ package jp.leve_five.careerup.Roma;
 
 public class ReplaceArabicToRoman {
 	// ”š‚Ì•¶š—ñ‚ğƒ[ƒ}”š‚É•ÏŠ·
-	public String convertNumberToRoman(int numberInt) {
+	public String convertNumberToRoman(int inputNumber) {
 		// “ü—Í’l‚ª4000–¢–‚à‚µ‚­‚Í‚PˆÈã‚Å‚ ‚é‚©”»’è
-		isNumberWithinNormalLimits(numberInt);
+		isNumberWithinNormalLimits(inputNumber);
 		
-		String numberString = String.valueOf(numberInt);
+		String numberString = String.valueOf(inputNumber);
 		byte stringBytes[] = numberString.getBytes();
 		StringBuffer resultRoman = new StringBuffer();
 		int numberDigit = stringBytes.length;
