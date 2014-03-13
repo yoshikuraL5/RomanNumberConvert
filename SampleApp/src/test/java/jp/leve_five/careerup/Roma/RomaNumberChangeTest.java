@@ -373,6 +373,20 @@ public class RomaNumberChangeTest {
 	public void testローマ数字ggを渡すと例外が発生する() {
 		romaNumberChange.convertRomanNumber("gg");
 	}
+	
+	@Test(expected = RuntimeException.class)
+	public void testローマ数字xixvを渡すと例外が発生する() {
+		romaNumberChange.convertRomanNumber("xixv");
+	}
+	@Test(expected = RuntimeException.class)
+	public void testローマ数字MCMDを渡すと例外が発生する() {
+		romaNumberChange.convertRomanNumber("mcmd");
+	}
+	
+	@Test(expected = RuntimeException.class)
+	public void testローマ数字xixlを渡すと例外が発生する() {
+		romaNumberChange.convertRomanNumber("xixl");
+	}
 
 	@Test(expected = RuntimeException.class)
 	public void testローマ数字imを渡すと例外が発生する() {
@@ -515,6 +529,7 @@ public class RomaNumberChangeTest {
 		String result = romaNumberChange.convertRomanNumber(99);
 		assertEquals("XCIX", result);
 	}
+	
 
 	@Test
 	public void test数字１２００を渡すとローマ数字MCCが返る() {
