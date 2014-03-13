@@ -18,7 +18,6 @@ public class ReplaceArabicToRoman {
 				{ "", "m", "mm", "mmm", "", "", "", "", "", "", } };
 
 		addRoman(stringBytes, resultRoman, romanTable);
-		System.out.println(stringBytes);
 		return resultRoman.toString().toUpperCase();
 	}
 

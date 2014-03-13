@@ -1,38 +1,35 @@
 package jp.leve_five.careerup.Roma;
 
+import java.util.regex.Pattern;
+
 public class ReplaceRomanToArabic {
-	private boolean romaTrue = false;
-	private int resultAdd = 0;
+	private int result = 0;
+
 	public int convertRomanToNumber(String inputRoman) {
 		char[] inputChar = inputRoman.toLowerCase().toCharArray();
 		int previousNumber = 0;
 		int currentNumber = 0;
-		int result = 0;		
 		int countRoman = 0;
-		
+
 		for (int i = inputChar.length - 1; i >= 0; i--) {
 			// 当てはまるローマ数字があれば、値を入れる。
 			currentNumber = changeNumber(inputChar, i);
 			countRoman++;
+
 			// 文法上の誤りがないか確認。
-			checkGrammaticalError(inputChar, previousNumber, currentNumber, countRoman, i);
-			// ローマ数字の一文字として判定されればtrueし、resultに加算する
-			addResultAndDistinctionRoman(inputChar, previousNumber,
-					currentNumber, countRoman, i);
-			// 一文字として認識できればresultに加算。リセットをする。
-			if (romaTrue) {
-				result += resultAdd;
+			checkGrammaticalErrors(inputRoman.toLowerCase());
+
+			// addResultAndDistinctionRomanメソッドにて返り値のresultの加算、一文字区切りができているかの判定
+			if (addResultAndDistinctionRoman(inputChar, previousNumber,
+					currentNumber, countRoman, i)) {
 				countRoman = 0;
-				resultAdd = 0;
-				romaTrue = false;
-			}			
+			}
 			previousNumber = currentNumber;
 		}
 		return result;
 	}
 
-
-	private void addResultAndDistinctionRoman(char[] inputChar,
+	private boolean addResultAndDistinctionRoman(char[] inputChar,
 			int previousNumber, int currentNumber, int countRoman, int i) {
 		if (previousNumber == 5
 				&& currentNumber == 1
@@ -42,57 +39,46 @@ public class ReplaceRomanToArabic {
 				&& currentNumber == 10 || previousNumber == 500
 				&& currentNumber == 100 || previousNumber == 1000
 				&& currentNumber == 100) {
-			romaTrue = true;
-			resultAdd += currentNumber * -1;
-			if (i > 0) { // 次の要素がある場合は、次の要素と今、前の値を比較。
-				if (currentNumber > changeNumber(inputChar, i - 1)
-						|| previousNumber >= changeNumber(inputChar, i - 1)) {
-					throw new RuntimeException("ローマ字記法の文法ではありません。*3");
-				}
-			}
-		} else if (countRoman == 3) {//同文字列が３つ並んだ場合のケースiii,xxx,cccなど
-			romaTrue = true;
-			resultAdd += currentNumber;
-			// iiii,xxxx,ccccなどの例外処理
-			if (i > 0) {
-				if (currentNumber == changeNumber(inputChar, i - 1)) {
-					throw new RuntimeException("同じ文字を４つ以上使ってはいけません。");
-				}
-			}
-		  //今の値が前の値にたいして（５倍もしくは１０倍）ではないケース
-		} else if ((previousNumber * 5 != currentNumber || previousNumber * 10 != currentNumber)
-				&& currentNumber > previousNumber && i < inputChar.length - 1) {
-			romaTrue = true;
-			resultAdd += currentNumber;
+			result -= currentNumber;
+			return true;
+			// 同文字列が３つ並んだ場合のケースiii,xxx,cccなど OR 今の値が前の値にたいして（５倍もしくは１０倍）ではないケース
+		} else if ((countRoman == 3)
+				|| ((previousNumber * 5 != currentNumber || previousNumber * 10 != currentNumber)
+						&& currentNumber > previousNumber && i < inputChar.length - 1)) {
+			result += currentNumber;
+			return true;
 		} else {
-			resultAdd += currentNumber;
-			if (i == 0) {//次の要素がなければ、trueにする
-				romaTrue = true;
+			result += currentNumber;
+			if (i == 0) {// 次の要素がなければ、trueにする
+				return true;
 			}
+			return false;
 		}
 	}
 
-
-	private void checkGrammaticalError(char[] inputChar, int minNumber,
-			int currentNumber, int count, int i) {
-		if (i != inputChar.length - 1
-				&& minNumber > currentNumber
-				&& !(currentNumber == minNumber
-						|| currentNumber * 5 == minNumber || currentNumber * 10 == minNumber)
-				|| (minNumber > currentNumber && count >= 3)) {
-			throw new RuntimeException("ローマ字記法の文法ではありません。*1");
-		}
-		if (count > 4) {
-			throw new RuntimeException("ローマ字記法の文法ではありません。*2");
-		}
-
-		if (i != 0
-				&& (currentNumber == 5 || currentNumber == 50 || currentNumber == 500)) {
-			for (int j = i - 1; j >= 0; j--) {
-				if (currentNumber == changeNumber(inputChar, j)) {
-					throw new RuntimeException("重複してはいけない文字列があります。");
-				}
-			}
+	private void checkGrammaticalErrors(String inputRoman) {
+		if (Pattern.matches(".*i{4,}.*", inputRoman)
+				|| Pattern.matches(".*x{4,}.*", inputRoman)
+				|| Pattern.matches(".*c{4,}.*", inputRoman)
+				|| Pattern.matches(".*m{4,}.*", inputRoman)
+				|| Pattern.matches(".*v{2,}.*", inputRoman)
+				|| Pattern.matches(".*l{2,}.*", inputRoman)
+				|| Pattern.matches(".*d{2,}.*", inputRoman)
+				|| Pattern.matches(".*[iv]+.*(i[vx])+.*", inputRoman)
+				|| Pattern.matches(".*i+.*([vx]i)+.*", inputRoman)
+				|| Pattern.matches(".*[xl]+.*(x[lc])+.*", inputRoman)
+				|| Pattern.matches(".*x+.*([lc]x)+.*", inputRoman)
+				|| Pattern.matches(".*[xcd]+.*(c[dm])+.*", inputRoman)
+				|| Pattern.matches(".*c+.*([dm]c)+.*", inputRoman)
+				|| Pattern.matches(".*[ivxld]+m+c*.*", inputRoman)
+				|| Pattern.matches(".*[ivxld]+d+c*.*", inputRoman)
+				|| Pattern.matches(".*[iv]+c+.*", inputRoman)
+				|| Pattern.matches(".*[iv]+l+.*", inputRoman)
+				|| Pattern.matches(".*v+x+.*", inputRoman)
+				|| Pattern.matches(".*c+m{2,}.*", inputRoman)
+				|| Pattern.matches(".*x+c{2,}.*", inputRoman)
+				|| Pattern.matches(".*i+x{2,}.*", inputRoman)) {
+			throw new RuntimeException("ローマ字記法の文法ではありません。*999");
 		}
 	}
 
