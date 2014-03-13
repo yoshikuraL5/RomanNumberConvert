@@ -8,7 +8,7 @@ public class ReplaceArabicToRoman {
 
 		String numberString = String.valueOf(inputNumber);
 		byte stringBytes[] = numberString.getBytes();
-		StringBuffer resultRoman = new StringBuffer();
+		StringBuilder resultRoman = new StringBuilder();
 
 		// ƒ[ƒ}”š‚Ì2ŸŒ³”z—ñ@”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX‚É‡‚í‚¹‚ÄA‚P`‚XA‚P‚O`‚X‚OA‚P‚O‚O`‚X‚O‚OC‚P‚O‚O‚O`‚S‚O‚O‚O‚Ü‚Å
 		String romanTable[][] = {
@@ -28,7 +28,7 @@ public class ReplaceArabicToRoman {
 	}
 
 	// StringBuffer roman‚É“ü—Í’l‚ÌŒ…‚É•¶š—ñ‚ğ’Ç‰Á‚·‚éswitch•¶
-	private void addRoman(byte[] stringBytes, StringBuffer resultRoman,
+	private void addRoman(byte[] stringBytes, StringBuilder resultRoman,
 			String[][] romanTable) {
 		int numberDigit = stringBytes.length;
 		int byteDigit = 0;
