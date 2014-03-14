@@ -137,7 +137,11 @@ public class RomaNumberChangeTest {
 		int result = romaNumberChange.convertRomanNumber("xc");
 		assertEquals(90, result);
 	}
-
+	@Test
+	public void testローマ数字lviを渡すと56が返る() {
+		int result = romaNumberChange.convertRomanNumber("lvi");
+		assertEquals(56, result);
+	}
 	@Test
 	public void testローマ数字cxiを渡すと111が返る() {
 		int result = romaNumberChange.convertRomanNumber("cxi");
@@ -439,6 +443,11 @@ public class RomaNumberChangeTest {
 	public void testローマ数字mmmmを渡すと例外が発生する() {
 		romaNumberChange.convertRomanNumber("mmmm");
 	}
+	@Test(expected = RuntimeException.class)
+	public void testローマ数字mixiを渡すと例外が発生する() {
+		romaNumberChange.convertRomanNumber("mixi");
+	}
+	
 
 	@Test
 	public void test数字1を渡すとローマ数字Iが返る() {

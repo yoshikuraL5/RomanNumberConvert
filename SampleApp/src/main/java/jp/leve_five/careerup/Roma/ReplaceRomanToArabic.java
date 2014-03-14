@@ -3,10 +3,10 @@ package jp.leve_five.careerup.Roma;
 import java.util.regex.Pattern;
 
 public class ReplaceRomanToArabic {
-	private int result = 0;
 
 	public int convertRomanToNumber(String inputRoman) {
 		char[] inputChar = inputRoman.toLowerCase().toCharArray();
+		int result = 0;
 		int previousNumber = 0;
 		int currentNumber = 0;
 		int countRoman = 0;
@@ -19,7 +19,13 @@ public class ReplaceRomanToArabic {
 			// 文法上の誤りがないか確認。
 			checkGrammaticalErrors(inputRoman.toLowerCase());
 
-			// addResultAndDistinctionRomanメソッドにて返り値のresultの加算、一文字区切りができているかの判定
+			result += currentNumber;
+			//iv,ix,xl,xc...などのケース
+			if (previousNumber == currentNumber * 5
+					|| previousNumber == currentNumber * 10) {
+				result -= currentNumber * 2;
+			}
+			// addResultAndDistinctionRomanメソッドにて一文字区切りができているかの判定
 			if (addResultAndDistinctionRoman(inputChar, previousNumber,
 					currentNumber, countRoman, i)) {
 				countRoman = 0;
@@ -31,24 +37,15 @@ public class ReplaceRomanToArabic {
 
 	private boolean addResultAndDistinctionRoman(char[] inputChar,
 			int previousNumber, int currentNumber, int countRoman, int i) {
-		if (previousNumber == 5
-				&& currentNumber == 1
-				|| previousNumber == 10 // iv,ix,xl,xcなどの処理
-				&& currentNumber == 1 || previousNumber == 50
-				&& currentNumber == 10 || previousNumber == 100
-				&& currentNumber == 10 || previousNumber == 500
-				&& currentNumber == 100 || previousNumber == 1000
-				&& currentNumber == 100) {
-			result -= currentNumber;
+		if (previousNumber == currentNumber * 5 //iv,ix,xl,xc...などのケース
+				|| previousNumber == currentNumber * 10) {
 			return true;
 			// 同文字列が３つ並んだ場合のケースiii,xxx,cccなど OR 今の値が前の値にたいして（５倍もしくは１０倍）ではないケース
 		} else if ((countRoman == 3)
 				|| ((previousNumber * 5 != currentNumber || previousNumber * 10 != currentNumber)
 						&& currentNumber > previousNumber && i < inputChar.length - 1)) {
-			result += currentNumber;
 			return true;
 		} else {
-			result += currentNumber;
 			if (i == 0) {// 次の要素がなければ、trueにする
 				return true;
 			}
